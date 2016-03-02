@@ -1,11 +1,16 @@
 {
   "name": "auction-scraper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robtarr/auction-scraper.git"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "auction-scraper.js",
   "scripts": {
     "start": "node lib/auction-scraper.js",
     "dev": "babel -w *.js --out-dir lib",
+    "deploy": "shipit production deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -20,5 +25,8 @@
     "lodash": "^4.5.0",
     "request-promise": "^2.0.1",
     "slack-client": "^2.0.2"
+  },
+  "devDependencies": {
+    "shipit-cli": "^1.4.1"
   }
 }
