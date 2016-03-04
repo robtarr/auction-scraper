@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node lib/auction-scraper.js",
     "dev": "babel -w *.js --out-dir lib",
+    "build": "babel *.js --out-dir lib",
     "deploy": "shipit production deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,6 +28,7 @@
     "slack-client": "^2.0.2"
   },
   "devDependencies": {
-    "shipit-cli": "^1.4.1"
+    "shipit-cli": "^1.4.1",
+    "shipit-ssh": "^1.3.4"
   }
 }
