@@ -1,22 +1,30 @@
 module.exports = function(shipit) {
   require('shipit-deploy')(shipit);
 
+  var deployPath = '/usr/src/auction-scraper';
+
   shipit.initConfig({
     default: {
       workspace: '/tmp/auction-scraper',
-      deployTo: '/usr/src/auction-scraper',
-      repositoryUrl: 'https://github.com/robtar/auction-scraper.git',
+      deployTo: deployPath,
+      repositoryUrl: 'git@github.com:robtarr/auction-scraper.git',
       ignores: ['.git', 'node_modules'],
-      rsync: ['--del'],
+      // rsync: ['--del'],
       keepReleases: 2,
-      key: '/home/deploy/.ssh/',
-      shallowClone: true
-    },
-    staging: {
-      servers: '159.203.92.26'
+      key: '/Users/Rob/.ssh/id_rsa.pub',
+      shallowClone: false,
+      npm: {
+        remote: true,
+        installArgs: ['gulp'],
+        installFlags: ['-g']
+      }
     },
     production: {
       servers: '159.203.92.26'
     }
+  });
+
+  shipit.on('deployed', function() {
+    return shipit.remote('cd ' + deployPath + '/current' + ' && npm install && npm run build');
   });
 };
